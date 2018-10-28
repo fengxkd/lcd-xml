@@ -42,9 +42,26 @@
         // Demonstrate how toString() will pretty-print an abbreviated version of the XML for debugging
         console.log("Parsed: \n" + suggestions);
 
+        console.log("page-id: " + suggestions.attr.id);
+        var opt = suggestions.attr.onclick.split("|");
+        opt.forEach(element => {
+
+          console.log("page-onclick: " + element);
+        });
+
         // Demonstrate a simple eachChild() loop, printing our book titles
-        suggestions.eachChild(function (page) {
-          document.write("<p>Found page with id: '" + page.attr.id + "'</p>");
+        suggestions.eachChild(lab => {
+          console.log(lab);
+          document.write("<p>Found page with id: '" + lab.attr.id + "'</p>");
+
+          console.log("lab-id: " + lab.attr.id);
+          if(lab.attr.onclick)
+          {
+            var opt = lab.attr.onclick.split("|");
+            opt.forEach(element => {
+              console.log("page-onclick: " + element);
+            });  
+          }
         });
 
       };
