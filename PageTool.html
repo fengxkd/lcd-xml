@@ -1,0 +1,61 @@
+<html>
+
+<head>
+  <script type="text/javascript" src="C:\Users\fengl\Desktop\weekday_project/sax.js"></script>
+  <script type="text/javascript" src="C:\Users\fengl\Desktop\weekday_project/xmldoc.js"></script>
+</head>
+
+<body>
+  <div id = "fileOutput">
+    How many time!
+  </div>
+  <form>
+    <div id="form1">
+      <input id="input-file" type="file" name="xmlFile" accept="text/xml" onchange="getXML(this.files)"></input>
+      <!-- <button type="button" onclick="getXML()">显示日期</button> -->
+    </div>
+  </form>
+  <script>
+    function getXML(files) {
+
+
+      var file = files[0];
+
+      // var message = document.getElementById("message");
+      // message.innerHTML = "文件名：" + file.name + "<br>";
+      // message.innerHTML += "文件大小：" + file.size + "字节<br>";
+      // message.innerHTML += "文件类型：" + file.type + "<br>";
+
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        // 这个事件发生，意为着数据准备好了
+        // 把它复制到页面的<div>元素中
+        // var output = document.getElementById("fileOutput");
+        // output.textContent = e.target.result;
+        var xml_str = e.target.result;
+
+        // Demonstrate parsing an in-memory XML string
+        // var xmlString = '<suggestions><book title="Twilight"/><book title="Twister"/></suggestions>'
+
+        var suggestions = new XmlDocument(xml_str);
+
+        // Demonstrate how toString() will pretty-print an abbreviated version of the XML for debugging
+        console.log("Parsed: \n" + suggestions);
+
+        // Demonstrate a simple eachChild() loop, printing our book titles
+        suggestions.eachChild(function (page) {
+          document.write("<p>Found page with id: '" + page.attr.id + "'</p>");
+        });
+
+      };
+      reader.readAsText(file);
+      //console.log(reader);
+
+      
+
+
+    }
+  </script>
+</body>
+
+</html>

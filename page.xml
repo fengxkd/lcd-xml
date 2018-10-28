@@ -1,0 +1,4 @@
+<page id = "PAGE_HOME" onclick = "LEFT|OK|ESC">
+	<lab id = "LAB_HOME_T1" >home_t1</lab>
+	<lab id = "LAB_HOME_T2" >home_t2</lab>
+</page>
